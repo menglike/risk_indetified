@@ -14,5 +14,5 @@ Install:
   4. 目前单个ip每天的请求量是100次，如果需要更大量的情景，请联系wx:cqwanhl
  
 页面预览：
-  ![Image text](https://github.com/menglike/risk_indetified/blob/main/WX20221115-234502%402x.png)
+  ![image](./WX20221115-234502@2x.png)
     
