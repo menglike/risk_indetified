@@ -1,0 +1,388 @@
+{{template  "header.html" }}
+
+<div id="root" class="app-wrapper"></div>
+
+<script src="/static/js/sdk.js"></script>
+
+
+<script type="text/javascript">
+    (function () {
+        let amis = amisRequire('amis/embed');
+        // 通过替换下面这个配置来生成不同页面
+        let amisJSON = {
+            "type": "page",
+            "title": "风险识别",
+            "body": [
+                {
+                    "type": "tabs",
+                    "tabs": [
+
+                        {
+                            "title": "IP风险画像",
+                            "body": [
+                                {
+                                    "type": "form",
+                                    "api": {
+                                        "method": "post",
+                                        "url": "/post_form",
+                                        "dataType": "form"
+                                    },
+                                    "title":"IP风险画像信息",
+
+                                    "body": [
+                                        {
+                                            "type": "input-text",
+                                            "name": "ip",
+                                            "placeholder": "请输入IP",
+                                            "label": "IP"
+                                        },
+                                        {
+                                            "type": "table-view",
+                                            "name": "ta",
+                                            "actions": [],
+                                            "trs": [
+                                                {
+                                                    "background": "#F7F7F7",
+                                                    "tds": [
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "风险得分"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.score",
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "风险描述"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.description"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "background": "#F7F7F7",
+                                                    "tds": [
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "国家/地区"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.extend.country"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "省份"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.extend.province"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "城市"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.extend.city"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "background": "#F7F7F7",
+                                                    "tds": [
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "是否是IDC机房IP"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.extend.isIdc"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "是否是代理IP"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.extend.isProxy"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "是否是NAT IP"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.extend.isNat"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "background": "#F7F7F7",
+                                                    "tds": [
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "是否是基站IP"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.extend.isBase"
+                                                            }
+                                                        },
+
+                                                    ]
+                                                },
+                                            ]
+                                        }
+                                    ],
+                                    "reload": "ta?result=${result}",
+                                },
+
+
+                            ]
+                        },
+                        {
+                            "title": "地址评分",
+                            "body": [
+                                {
+                                    "type": "form",
+                                    "api": {
+                                        "method": "post",
+                                        "url": "/post_form",
+                                        "dataType": "form"
+                                    },
+                                    "title":"地址评分信息",
+                                    "reload": "table1?result=${result}",
+                                    "body": [
+                                        {
+                                            "type": "input-text",
+                                            "name": "addr",
+                                            "placeholder": "请输入地址",
+                                            "label": "地址"
+                                        },
+                                        {
+                                            "type": "table-view",
+                                            "name": "table1",
+                                            "trs": [
+                                                {
+                                                    "background": "#F7F7F7",
+                                                    "tds": [
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "风险得分"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.score",
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "风险描述"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.description"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                            ]
+                                        }
+                                    ]
+                                },
+
+
+                            ]
+                        },
+                        {
+                            "title": "邮箱画像",
+                            "body": [
+                                {
+                                    "type": "form",
+                                    "api": {
+                                        "method": "post",
+                                        "url": "/post_form",
+                                        "dataType": "form"
+                                    },
+                                    "title":"邮箱画像事件信息",
+                                    "reload": "table2?result=${result}",
+                                    "body": [
+                                        {
+                                            "type": "input-text",
+                                            "name": "email",
+                                            "placeholder": "请输入邮箱",
+                                            "label": "邮箱"
+                                        },
+                                        {
+                                            "type": "table-view",
+                                            "name": "table2",
+                                            "trs": [
+                                                {
+                                                    "background": "#F7F7F7",
+                                                    "tds": [
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "风险得分"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.score",
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "风险描述"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.tags"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                            ]
+                                        }
+                                    ]
+                                }
+                                ,
+
+                            ]
+                        },
+                        {
+                            "title": "业务风险情报",
+                            "body": [
+
+                                {
+                                    "type": "form",
+                                    "api": {
+                                        "method": "post",
+                                        "url": "/post_form",
+                                        "dataType": "form"
+                                    },
+                                    "reload": "table3?result=${result}",
+                                    "title":"业务风险情报事件信息",
+                                    "body": [
+                                        {
+                                            "type": "input-text",
+                                            "name": "phone",
+                                            "placeholder": "请输入手机号",
+                                            "label": "手机号"
+                                        },
+                                        {
+                                            "type": "table-view",
+                                            "name": "table3",
+                                            "trs": [
+                                                {
+                                                    "background": "#F7F7F7",
+                                                    "tds": [
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "风险得分"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.score",
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "风险描述"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.description"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "tpl",
+                                                                "tpl": "风险标签"
+                                                            }
+                                                        },
+                                                        {
+                                                            "body": {
+                                                                "type": "static",
+                                                                "name": "result.tags"
+                                                            }
+                                                        },
+                                                    ]
+                                                },
+                                            ]
+                                        }
+                                    ]
+                                },
+
+
+                            ]
+                        },
+                    ]
+                },
+                {"type":"alert","body":'有问题请联系wx:cqwanhl',"className":"text-center"}
+
+            ]
+
+
+        };
+        let amisScoped = amis.embed('#root', amisJSON);
+    })();
+</script>
+
+
+{{template  "footer.html" }}
